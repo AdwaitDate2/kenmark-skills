@@ -109,6 +109,58 @@ under review, merged with follow-up work, blocked, waiting for review, changes
 requested, or waiting for CI. Call out inconsistencies such as a completed
 Linear status with an open PR or an in-progress Linear status with merged code.
 
+### 7. Inspect PR reviews
+
+Review all meaningful PR review activity. Check approvals, requested changes,
+pending reviews, general comments, inline comments, review threads, resolved
+threads, and unresolved threads.
+
+For each unresolved or important comment, record:
+
+- Reviewer
+- Requested change
+- Date and time when available
+- Whether the request was addressed
+- Whether the thread is resolved
+
+Do not call a PR complete merely because its implementation exists. A PR with
+unresolved requested changes must be clearly identified.
+
+### 8. Inspect CI and checks
+
+Check all available GitHub checks and classify them as passing, failing,
+pending, cancelled, or skipped. Determine whether failures are related to the
+implementation or appear to be unrelated infrastructure failures.
+
+Never call a PR ready to merge when required checks are failing or significant
+review requests remain unresolved.
+
+### 9. Look for multiple or historical PRs
+
+Search for closed PRs, superseded attempts, merged prerequisites, follow-up
+fixes, backend PRs, frontend PRs, monorepo PRs, and migration PRs. Build a
+timeline when multiple PRs contribute to the ticket and explain how they fit
+together.
+
+### 10. Identify missing work
+
+Explicitly identify what appears to remain, including missing frontend or
+backend work, tests, migrations, unresolved review comments, failing CI,
+required product decisions, unresolved blockers, absent PRs, unreviewed PRs,
+and edge cases mentioned in comments but not implemented.
+
+Separate confirmed missing work from possible missing work.
+
+### 11. Check scope beyond the obvious implementation
+
+Do not assume a ticket mentioning one area only requires changes there. Check
+whether the evidence supports impact to frontend, backend, APIs, database,
+authentication, authorization, email, background jobs, webhooks,
+integrations, analytics, notifications, audit logs, tests, or documentation.
+
+Only state an area as required when supported by evidence. Otherwise classify it
+as a **Potential implementation consideration**.
+
 ## Evidence and uncertainty
 
 Prefer direct links and concrete facts. Distinguish:
@@ -202,3 +254,159 @@ The report must answer, when the available data allows it:
 4. What is the status of reviews and CI?
 5. Which requirements are complete, partial, missing, or unverified?
 6. What should happen next?
+
+## Detailed reporting requirements
+
+### Ticket summary
+
+Include the ticket identifier, title, status, priority, assignee, project, and
+cycle. Explain what the ticket is actually asking for instead of rewriting its
+description.
+
+### Requirements
+
+Break requirements into applicable categories:
+
+- Backend
+- Frontend
+- Database
+- Tests
+- Other
+
+For each item, distinguish confirmed requirements from inferences and
+clarification-dependent items.
+
+### Related Linear work
+
+For every meaningful parent, child, related, blocking, blocked-by, or duplicate
+issue, include its identifier and title, relationship type, why it matters,
+and current state. Do not merely list related issues.
+
+### Pull requests
+
+For every discovered PR, include:
+
+```markdown
+### PR #XXXX — Title
+
+Repository:
+Status:
+Author:
+Branch:
+Review status:
+CI:
+Merge status:
+
+**Relation to ticket**
+
+Explain exactly what portion of the ticket this PR implements.
+
+**Implementation**
+
+Summarize relevant added, modified, and removed files, application layers,
+tests, migrations, APIs, UI components, and business rules.
+
+**Reviews**
+
+Summarize approvals, requested changes, pending reviews, and unresolved
+comments.
+```
+
+### Requirement-to-implementation mapping
+
+Use this table whenever sufficient implementation information is available:
+
+| Ticket requirement | Implementation | PR | State |
+| --- | --- | --- | --- |
+| Requirement | File or feature implementing it | PR # | Done / Partial / Missing / Unverified |
+
+Identify requirements with no corresponding implementation.
+
+### Blockers and outstanding items
+
+List actual blockers. If none are found, state **No active blockers found.**
+List remaining work separately, including unresolved review comments, failing
+CI, pending approvals, missing implementation, or product clarification.
+
+### Activity timeline
+
+Include meaningful events chronologically when useful:
+
+`Date / Time — Event — Person`
+
+Relevant events include ticket creation, requirement changes, PR opening,
+reviews, requested changes, pushed changes, approvals, and merges.
+
+### Current state
+
+End with a concise factual conclusion that reconciles Linear and GitHub. For
+example:
+
+> The backend implementation exists in a PR and is under review with one
+> unresolved comment. The ticket also describes frontend behaviour, but no
+> corresponding frontend PR was found. The ticket therefore has remaining
+> implementation work.
+
+### Next actions
+
+Provide concrete engineering actions supported by the evidence. Do not invent
+work merely to populate this section.
+
+## Investigation rules
+
+### Be exhaustive
+
+Do not stop after finding the first PR or related issue. Follow relevant
+connections until the state of the ticket is understandable.
+
+### Use the right source for each fact
+
+Use Linear for requirements, relationships, activity, and project context. Use
+GitHub for implementation, branches, commits, review state, and CI. Reconcile
+both sources rather than treating either as complete by itself.
+
+### Do not equate links with completion
+
+A linked PR may cover only part of a ticket. Inspect its implementation and
+compare it with the ticket requirements.
+
+### Distinguish facts from inference
+
+Use language such as:
+
+- **Confirmed:** The ticket explicitly requires...
+- **Likely:** Based on the linked implementation...
+- **Needs clarification:** The description mentions the behaviour but does not
+  specify...
+
+### Prefer evidence
+
+Provide direct links to Linear issues, pull requests, and relevant review
+threads whenever possible. If a source cannot be accessed, state what could
+not be verified.
+
+### Do not hide inconsistencies
+
+Explicitly flag inconsistencies such as a completed Linear status with an open
+PR, an in-progress status with merged code, backend-and-frontend requirements
+with only a backend PR, an unresolved blocker with implementation started, or
+a closed PR with no replacement implementation.
+
+## Completion criteria
+
+The investigation is complete when the report answers, whenever the available
+Linear and GitHub data allows it:
+
+1. What exactly is the ticket asking the user to build?
+2. Why does the ticket exist?
+3. What other tickets are connected to it?
+4. Is anything blocking it?
+5. Has implementation started?
+6. What PRs belong to it?
+7. What does each PR actually implement?
+8. What is the status of each PR?
+9. Are there unresolved review comments?
+10. Is CI passing?
+11. Which parts are complete?
+12. What is still missing?
+13. What should the user work on next?
