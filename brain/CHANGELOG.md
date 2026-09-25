@@ -4,7 +4,7 @@ Brain knowledge base
 
 ## v2026.09.25-linear-ticket-score
 
-- **Skill catalog:** Added `kenmark-linear-ticket-score` to the bundled issues skills and routing reference.
+- **Skill catalog:** Added `kenmark-linear-ticket-score` to the bundled issues skills and routing reference; its default response is a compact ticket health report with expanded evidence available when needed.
 
 ## v2026.07.04-node24-symlink-compat
 

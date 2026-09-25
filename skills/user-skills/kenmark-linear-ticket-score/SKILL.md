@@ -405,135 +405,50 @@ If implementation requires code changes but no relevant PR can be found:
 
 # Final Output Format
 
-# 🎯 Linear Ticket Score
+## Default: Compact ticket health report
 
-## KEN-XXX — Ticket Title
+Keep the first response brief enough to scan in a few seconds. Lead with the score, status, ticket state, PR state, CI, unresolved review count, requirements score, main blocker, and next action. Do not lead with a long audit or repeat the ticket description.
 
-**Score: 87 / 100**
+Use this shape, omitting fields that do not apply and stating **Unable to verify** or **CI status unavailable** when evidence is missing:
 
-**Status: Nearly Complete**
+```text
+KEN-167 — Fix Teamtailor provisioning flow
+82 / 100 🟡 Nearly Complete
+Ticket: In Progress · PR: #4068 — Open
+CI: ✅ Passing · Reviews: ❌ 1 unresolved blocking thread
+Requirements: 35 / 40 · PR linkage: 15 / 15 · PR state: 12 / 15 · Reviews: 10 / 20 · CI: 10 / 10
+Main blocker: Reviewer-requested validation is still unresolved.
+Next: Fix the validation → resolve the thread → get approval → merge.
+```
 
----
+The score-category values may be shortened to a single `Breakdown:` line. Keep the full category table for a user who asks for a detailed breakdown or when a complex, multi-PR situation needs it to explain the score clearly. Always explain why points were lost; a concise deduction line is enough by default, for example:
 
-## Score Breakdown
+> **Points lost:** -5 requirement not fully verified · -3 PR not merged · -10 unresolved blocking review.
 
-| Category            |        Score |
-| ------------------- | -----------: |
-| Ticket requirements |      38 / 40 |
-| GitHub PR linkage   |      15 / 15 |
-| PR state            |      12 / 15 |
-| Reviewer comments   |      15 / 20 |
-| CI checks           |       7 / 10 |
-| **Total**           | **87 / 100** |
+When multiple PRs are involved, briefly list each relevant PR and its state. Identify whether each PR is directly linked in Linear or was found by searching GitHub. Do not imply that all work is complete based on one PR when other required implementation may be missing.
 
----
+## Expanded evidence, when requested or needed
 
-# 🎫 Ticket
+For a detailed report, include the score table and only the evidence needed to support it:
 
-Status:
-Assignee:
-Priority:
+| Category | Score |
+| --- | ---: |
+| Ticket requirements satisfied | 35 / 40 |
+| GitHub PR linked / found | 15 / 15 |
+| PR state | 12 / 15 |
+| Reviewer comments | 10 / 20 |
+| CI checks | 10 / 10 |
+| **Total** | **82 / 100** |
 
-Briefly explain what the ticket requires.
+Summarize the ticket requirements and their completion, then list each relevant PR with its status, review state, CI state, merge state, and relation to the ticket. For reviewer feedback, report the exact number of unresolved threads whenever possible; identify the reviewer, file, requested change, and blocking impact when evidence is available. Finish with the specific point deductions and only the actions needed to reach 100/100.
 
----
+Use these status labels:
 
-# 🔀 Pull Requests
-
-### PR #XXXX — PR title
-
-Status:
-Review status:
-CI:
-Merged: Yes / No
-
-**Relation to ticket**
-
-Explain what part of the ticket this PR implements.
-
-If several PRs exist, list all relevant PRs.
-
----
-
-# 💬 Review Status
-
-**Reviewer comments:** 6
-**Resolved:** 5
-**Unresolved:** 1
-
-List unresolved comments.
-
-Example:
-
-### Reviewer — @username
-
-**File:** `services/timeoff/service.ts`
-
-**Issue:**
-Reviewer requested validation before creating the policy assignment.
-
-**State:** Unresolved
-
-**Impact:** Blocking
-
----
-
-# 🧩 Ticket Completion
-
-### Completed
-
-* Backend implementation
-* Database migration
-* Tests
-
-### Remaining
-
-* One reviewer comment
-* Final approval
-* CI currently running
-
-Only include items supported by evidence.
-
----
-
-# ⚠️ Score Deductions
-
-Explain exactly why points were lost.
-
-Example:
-
-* `-3` PR has not yet been merged.
-* `-5` One blocking review comment remains unresolved.
-* `-3` CI is still running.
-* `-2` One acceptance criterion could not be confirmed.
-
----
-
-# ✅ What Is Needed for 100/100
-
-List the exact remaining actions.
-
-Example:
-
-1. Address the unresolved review comment from @reviewer.
-2. Resolve the GitHub review thread.
-3. Get PR approval.
-4. Ensure all required CI checks pass.
-5. Merge PR #4068.
-
----
-
-# Final Assessment
-
-Finish with a concise factual statement.
-
-Example:
-
-> **87/100 — Nearly Complete**
->
-> The implementation appears to satisfy the majority of KEN-164. A relevant GitHub PR is linked and the implementation is under review. One blocking review thread remains unresolved and the PR has not yet been merged. Resolving the review comment, receiving approval, passing CI, and merging the PR would bring the ticket close to 100/100.
-
----
+- **90–100 — Ready / Complete**
+- **75–89 — Nearly Complete**
+- **50–74 — In Progress**
+- **25–49 — Early Implementation**
+- **0–24 — Not Implemented / Major Gaps**
 
 # Important Rules
 
