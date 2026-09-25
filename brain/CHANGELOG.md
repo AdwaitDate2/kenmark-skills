@@ -2,6 +2,10 @@
 
 Brain knowledge base
 
+## v2026.09.25-linear-ticket-score
+
+- **Skill catalog:** Added `kenmark-linear-ticket-score` to the bundled issues skills and routing reference.
+
 ## v2026.07.04-node24-symlink-compat
 
 - **CLI/Hub:** Resolved Node.js v24 EISDIR symlink compatibility bug by using `fs.unlinkSync` for symbolic links in `removePathIfExists`.

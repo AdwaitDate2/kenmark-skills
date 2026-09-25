@@ -50,6 +50,7 @@ skills/user-skills/          ← bundled universal skills (53)
   kenmark-tracker-check/
   kenmark-tracker-maintain/
   kenmark-issues-scan/               category: issues (scan codebase, file issues)
+  kenmark-linear-ticket-score/       category: issues (score Linear ticket completion)
   kenmark-audit-loop/                category: issues (multi-pass audit until converged)
   kenmark-issues-fix-and-ship/   category: workflow (phase: ship)
   kenmark-plans-execute/
@@ -81,6 +82,7 @@ not in this package.
 | Security review, auth bypass, RBAC, injection, SSRF, CORS, rate limits | `kenmark-security-review` |
 | Performance bottlenecks, slow routes, DB queries, bundle, hydration, caching | `kenmark-performance` |
 | Host assets on Kenmark Storage / `@kenmark/storage` / storage API / proxied assets | `kenmark-storage` |
+| Score a Linear ticket's completion | `kenmark-linear-ticket-score` |
 
 ## Testing suite (routing)
 
@@ -115,6 +117,7 @@ not in this package.
 | `kenmark-security-review` | Read-only secure-code review (auth, injection, SSRF, uploads) |
 | `kenmark-performance` | Slow pages/routes, N+1, bundle/hydration, caching, API latency |
 | `kenmark-storage` | API-only Kenmark Storage — proxied upload/list/serve, visibility, soft delete; shared monorepo package; pitfalls + CMS patterns (v1.3.1) |
+| `kenmark-linear-ticket-score` | Score Linear ticket completion against implementation, PR review, and CI evidence |
 | `kenmark-repo-release` | Pre-release version, changelog, tests, meta consistency |
 | `kenmark-test-plan` | Test strategy: layers, tools, ROI, CI gates before writing tests |
 | `kenmark-test-unit` | Unit tests for functions, components, hooks, utilities |
