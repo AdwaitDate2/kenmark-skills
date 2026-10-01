@@ -15,7 +15,7 @@ Status: reviewed
 | workflow | `kenmark-plan`, `kenmark-troubleshoot`, `kenmark-repo-*`, `kenmark-security-review`, `kenmark-performance`, `kenmark-storage` |
 | testing | `kenmark-test-plan`, `kenmark-test-unit`, … `kenmark-test-ci` |
 | git | `kenmark-commit` |
-| issues | `kenmark-issues-scan`, `kenmark-audit-loop`, `kenmark-issues-fix-and-ship` |
+| issues | `kenmark-issues-scan`, `kenmark-linear-ticket-score`, `kenmark-audit-loop`, `kenmark-issues-fix-and-ship` |
 | plans | `kenmark-plan`, `kenmark-plans-execute` |
 | admin | `kenmark-update`, `kenmark-skills-maintain`, `kenmark-agents` |
 
@@ -31,7 +31,7 @@ May use freely: `kenmark-troubleshoot`, `kenmark-output`, `kenmark-tracker-list`
 
 ### Specialist
 
-Use when task clearly matches: `kenmark-subagents`, `kenmark-repo-docs`, `kenmark-repo-deps`, `kenmark-repo-release`, `kenmark-repo-hygiene`, all `kenmark-test-*`, `kenmark-issues-scan`, `kenmark-audit-loop`, `kenmark-issues-fix-and-ship`, `kenmark-plan`, `kenmark-plans-execute`, `kenmark-tracker-setup`, `kenmark-tracker-check`, `kenmark-tracker-maintain`, `kenmark-storage`.
+Use when task clearly matches: `kenmark-subagents`, `kenmark-repo-docs`, `kenmark-repo-deps`, `kenmark-repo-release`, `kenmark-repo-hygiene`, all `kenmark-test-*`, `kenmark-issues-scan`, `kenmark-linear-ticket-score`, `kenmark-audit-loop`, `kenmark-issues-fix-and-ship`, `kenmark-plan`, `kenmark-plans-execute`, `kenmark-tracker-setup`, `kenmark-tracker-check`, `kenmark-tracker-maintain`, `kenmark-storage`.
 
 ### Explicit admin
 
